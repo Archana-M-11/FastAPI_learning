@@ -1,14 +1,4 @@
 {
-  "P002": {
-    "name": "Ravi Mehta",
-    "city": "kerala",
-    "age": 35,
-    "gender": "male",
-    "height": 1.55,
-    "weight": 85.0,
-    "bmi": 35.38,
-    "verdict": "Obese"
-  },
   "P003": {
     "name": "Sneha Kulkarni",
     "city": "Pune",
@@ -39,14 +29,14 @@
     "bmi": 31.22,
     "verdict": "Obese"
   },
-  "P0011": {
-    "name": "Archana M",
-    "city": "Palakkad",
-    "age": 21,
+  "P001": {
+    "name": "Anupama",
+    "city": "udaipur",
+    "age": 22,
     "gender": "female",
-    "height": 157.0,
-    "weight": 45.0,
-    "bmi": 0.57,
+    "height": 1.6,
+    "weight": 51.0,
+    "bmi": 19.92,
     "verdict": "Normal"
   }
 }

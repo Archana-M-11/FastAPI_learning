@@ -49,16 +49,11 @@ def save_data(data):
     with open('patients.json','w') as f:
         json.dump(data,f)
 
+# endpoints
 @app.get('/')
 def home():
     return{
         'message':'A full function API for patient data'
-    }
-
-@app.get('/about')
-def about():
-    return{
-        'message':'This API is for fetching the patients data'
     }
 
 @app.get('/view')
@@ -102,24 +97,25 @@ def creat_patient(patient:Patient):
 @app.put('/update/{patient_id}')
 def update_patient(patient_id: str, patient_update: PatientUpdate):
     data = load_data()
-
     if patient_id not in data:
         raise HTTPException(status_code=404, detail='Patient not found')
-
     existing_patient_info = data[patient_id]
-
     updated_patient_info = patient_update.model_dump(exclude_unset=True)
-
     existing_patient_info.update(updated_patient_info)
-
     existing_patient_info['id'] = patient_id
-
     patient_obj = Patient(**existing_patient_info)
-
     data[patient_id] = patient_obj.model_dump(exclude={'id'})
-
     save_data(data)
-
     return {"message": "Patient data updated successfully"}
 
-
+@app.delete('/delete/{patient_id}')
+def patient_delete(patient_id:str= Path(...,description='id of the patient in db',example='P001')):
+    data=load_data()
+    if patient_id not in data:
+        raise HTTPException(status_code=404,detail='patient not found')
+    del data[patient_id]
+    save_data(data)
+    return JSONResponse(
+        status_code=200,
+        content={'message':'patient deleted'}
+    )
